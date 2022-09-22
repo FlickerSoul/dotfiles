@@ -1,12 +1,3 @@
-local use = require('packer').use
-require('packer').startup(function()
-    use 'wbthomason/packer.nvim' -- Package manager
-	use 'neovim/nvim-lspconfig' -- configurations for nvim lsp
-    use {'ms-jpq/coq_nvim'}
-	use 'ms-jpq/coq.artifacts'
-	use 'ms-jpq/coq.thirdparty'
-end)
-
 vim.g.coq_settings = { auto_start = 'shut-up' }
 
 -- Mappings.
@@ -65,9 +56,7 @@ require('lspconfig')['clangd'].setup(require('coq').lsp_ensure_capabilities({
   }))
 
 
-require('lspconfig')['sourcekit'].setup(require('coq').lsp_ensure_capabilities({
-	on_att = on_attach,
-	flags = lsp_flags,
-}))
-
-
+require('lspconfig')['pyright'].setup(require('coq').lsp_ensure_capabilities({
+    on_att = on_attach,
+    flags = lsp_flags,
+  }))

@@ -52,7 +52,8 @@ colorscheme onedark
 lua require('plugins')
 
 " setup lsp server 
-lua require('lsp_cmp_config')
+" lua require('lsp_cmp_config')
+lua require('lsp_coq_config')
 
 " setup indent 
 lua require('indent')

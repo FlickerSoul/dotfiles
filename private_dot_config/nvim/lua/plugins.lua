@@ -24,6 +24,9 @@ return require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-lualine/lualine.nvim'
+  use 'ms-jpq/coq_nvim'
+  use 'ms-jpq/coq.artifacts'
+  use 'ms-jpq/coq.thirdparty'
   -- use 'mhartington/formatter.nvim'
   
   -- Automatically set up your configuration after cloning packer.nvim
