@@ -20,13 +20,19 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  -- comment 
   use 'numToStr/Comment.nvim'
+  -- indent 
   use "lukas-reineke/indent-blankline.nvim"
   use 'nvim-treesitter/nvim-treesitter'
+  -- nvim lua
   use 'nvim-lualine/lualine.nvim'
+  -- auto complete 
   use 'ms-jpq/coq_nvim'
   use 'ms-jpq/coq.artifacts'
   use 'ms-jpq/coq.thirdparty'
+  -- tex 
+  use 'lervag/vimtex'
   -- use 'mhartington/formatter.nvim'
   
   -- Automatically set up your configuration after cloning packer.nvim
