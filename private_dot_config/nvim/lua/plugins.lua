@@ -21,7 +21,9 @@ return require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   -- comment 
-  use 'numToStr/Comment.nvim'
+  use {'numToStr/Comment.nvim', config = function()
+    require('Comment').setup()
+  end}
   -- indent 
   use "lukas-reineke/indent-blankline.nvim"
   use 'nvim-treesitter/nvim-treesitter'

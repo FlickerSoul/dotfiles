@@ -58,6 +58,9 @@ lua require('lsp_coq_config')
 " setup indent 
 lua require('indent')
 
+" setup comment 
+" lua require('comment')
+
 " setup bottom bar 
 lua require('bottom_bar')
 
