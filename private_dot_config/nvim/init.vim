@@ -41,6 +41,7 @@ call plug#begin()
 Plug 'joshdick/onedark.vim'
 Plug 'ellisonleao/glow.nvim'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'mlr-msft/vim-loves-dafny', {'for': 'dafny'}
 " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()

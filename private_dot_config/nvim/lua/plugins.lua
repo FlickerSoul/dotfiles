@@ -35,6 +35,16 @@ return require('packer').startup(function(use)
   use 'ms-jpq/coq.thirdparty'
   -- tex 
   use 'lervag/vimtex'
+  -- telescope fuzzy search 
+  use {
+	'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use {
+    'marioortizmanero/adoc-pdf-live.nvim',
+    config = "require('adoc_pdf_live').setup()"
+  }
   -- use 'mhartington/formatter.nvim'
   
   -- Automatically set up your configuration after cloning packer.nvim

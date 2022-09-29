@@ -61,7 +61,17 @@ require('lspconfig')['pyright'].setup(require('coq').lsp_ensure_capabilities({
     flags = lsp_flags,
   }))
 
-  require("coq_3p") {
-	  { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
-      { src = "vimtex", short_name = "vTEX" }
-  }
+require("coq_3p") {
+  { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
+  { src = "vimtex", short_name = "vTEX" }
+}
+
+require('lspconfig')['hls'].setup(require('coq').lsp_ensure_capabilities({
+    on_att = on_attach,
+    flags = lsp_flags,
+}))
+
+require('lspconfig')['ocamllsp'].setup(require('coq').lsp_ensure_capabilities({
+    on_att = on_attach,
+    flags = lsp_flags,
+}))
