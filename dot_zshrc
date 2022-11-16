@@ -167,3 +167,5 @@ export PATH=/usr/local/smlnj/bin:"$PATH"
 
 # opam configuration
 [[ ! -r /Users/flicker_soul/.opam/opam-init/init.zsh ]] || source /Users/flicker_soul/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+export PATH="/usr/local/opt/bison/bin:$PATH"
+export PATH="/usr/local/opt/flex/bin:$PATH"

@@ -8,6 +8,32 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+-- for the auto bracket complete 
+-- _G.MUtils= {}
+--
+-- MUtils.CR = function()
+--   if vim.fn.pumvisible() ~= 0 then
+--     if vim.fn.complete_info({ 'selected' }).selected ~= -1 then
+--       return npairs.esc('<c-y>')
+--     else
+--       return npairs.esc('<c-e>') .. npairs.autopairs_cr()
+--     end
+--   else
+--     return npairs.autopairs_cr()
+--   end
+-- end
+-- remap('i', '<cr>', 'v:lua.MUtils.CR()', { expr = true, noremap = true })
+--
+-- MUtils.BS = function()
+--   if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
+--     return npairs.esc('<c-e>') .. npairs.autopairs_bs()
+--   else
+--     return npairs.autopairs_bs()
+--   end
+-- end
+-- remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
+--
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -75,3 +101,9 @@ require('lspconfig')['ocamllsp'].setup(require('coq').lsp_ensure_capabilities({
     on_att = on_attach,
     flags = lsp_flags,
 }))
+
+require('lspconfig')['texlab'].setup(require('coq').lsp_ensure_capabilities({
+    on_att = on_attach,
+    flags = lsp_flags,
+}))
+

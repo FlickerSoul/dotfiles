@@ -23,11 +23,21 @@ set ttyfast                 " Speed up scrolling in Vim
 " set laststatus=1
 " set spell                 " enable spell check (may need to download
 " language package)
-" " set noswapfile            " disable creating swap file
-" " set backupdir=~/.cache/vim " Directory to store backup files.
+" set noswapfile            " disable creating swap file
+" set backupdir=~/.cache/vim " Directory to store backup files.
+
+" set breakindent
+set showbreak=↪
 
 set relativenumber 			" set up relative line number
 
+" set keybidnings 
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
+
+" set texwidth=80            " set hard wrap 
 
 call plug#begin()
 " Plugin Section
@@ -35,26 +45,41 @@ call plug#begin()
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Plug 'preservim/nerdcommenter'
 " Plug 'mhinz/vim-startify'
 Plug 'joshdick/onedark.vim'
+Plug 'arzg/vim-colors-xcode'
 Plug 'ellisonleao/glow.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'mlr-msft/vim-loves-dafny', {'for': 'dafny'}
+" Plug 'Chiel92/vim-autoformat'
+
 " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " dark scheme 
-colorscheme onedark
+" colorscheme onedark
+set termguicolors
+colorscheme xcodedarkhc
+
+" for vimtex 
+" let g:vimtex_view_general_viewer = 'okular'
+" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+filetype plugin indent on
+
+" for python support 
+let g:python3_host_prog="/Users/flicker_soul/.pyenv/shims/python3"
 
 " load packer (which is useless)
 lua require('plugins')
 
+
 " setup lsp server 
 " lua require('lsp_cmp_config')
-lua require('lsp_coq_config')
+" lua require('lsp_coq_config')
+lua require('lsp_coc_config')
 
 " setup indent 
 lua require('indent')
@@ -65,3 +90,5 @@ lua require('indent')
 " setup bottom bar 
 lua require('bottom_bar')
 
+" auto bracket 
+lua require('auto-bracket')
