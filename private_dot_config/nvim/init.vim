@@ -48,7 +48,7 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 " Plug 'preservim/nerdcommenter'
 " Plug 'mhinz/vim-startify'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 Plug 'arzg/vim-colors-xcode'
 Plug 'ellisonleao/glow.nvim'
 Plug 'ThePrimeagen/vim-be-good'
@@ -78,8 +78,8 @@ lua require('plugins')
 
 " setup lsp server 
 " lua require('lsp_cmp_config')
-" lua require('lsp_coq_config')
-lua require('lsp_coc_config')
+lua require('lsp_coq_config')
+" lua require('lsp_coc_config')
 
 " setup indent 
 lua require('indent')

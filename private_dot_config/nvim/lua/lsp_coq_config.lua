@@ -87,9 +87,14 @@ require('lspconfig')['pyright'].setup(require('coq').lsp_ensure_capabilities({
     flags = lsp_flags,
   }))
 
+require('lspconfig')['rust_analyzer'].setup(require('coq').lsp_ensure_capabilities({
+    on_att = on_attach,
+    flags = lsp_flags,
+  }))
+
 require("coq_3p") {
   { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
-  { src = "vimtex", short_name = "vTEX" }
+  { src = "vimtex", short_name = "TEX" }
 }
 
 require('lspconfig')['hls'].setup(require('coq').lsp_ensure_capabilities({
