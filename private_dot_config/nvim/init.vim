@@ -91,4 +91,5 @@ lua require('indent')
 lua require('bottom_bar')
 
 " auto bracket 
-lua require('auto-bracket')
+" lua require('auto-bracket')
+

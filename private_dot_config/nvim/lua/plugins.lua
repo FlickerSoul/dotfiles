@@ -65,6 +65,11 @@ return require('packer').startup(function(use)
   -- the auto pair
   use {
 	"windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+    config = function()
+        require("auto_pairs").setup()
+    end,
     -- config = function() require("nvim-autopairs").setup {} end
   }
 
