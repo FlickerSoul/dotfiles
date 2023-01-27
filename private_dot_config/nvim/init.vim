@@ -75,21 +75,14 @@ let g:python3_host_prog="/Users/flicker_soul/.pyenv/shims/python3"
 " load packer (which is useless)
 lua require('plugins')
 
-
 " setup lsp server 
 " lua require('lsp_cmp_config')
-lua require('lsp_coq_config')
+" lua require('lsp_coq_config')
 " lua require('lsp_coc_config')
 
 " setup indent 
 lua require('indent')
 
-" setup comment 
-" lua require('comment')
-
 " setup bottom bar 
 lua require('bottom_bar')
-
-" auto bracket 
-" lua require('auto-bracket')
 

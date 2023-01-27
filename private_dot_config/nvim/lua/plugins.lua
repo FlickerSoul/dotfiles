@@ -18,11 +18,24 @@ return require('packer').startup(function(use)
   
   -- cmp auto complete 
   -- use "williamboman/nvim-lsp-installer"  -- the lsp installer 
-  -- use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  -- use {
+  --   'hrsh7th/nvim-cmp',
+  --   event = "InsertEnter",
+  --   requires = {
+  --   "hrsh7th/cmp-buffer",
+  --   "hrsh7th/cmp-path",
+  --   "hrsh7th/cmp-nvim-lua",
+  --   "ray-x/cmp-treesitter",
+  --   "hrsh7th/cmp-cmdline",
+  --   "saadparwaiz1/cmp_luasnip",
+  --   "hrsh7th/cmp-calc",
+  --   "f3fora/cmp-spell",
+  --   }, 
+  -- }-- Autocompletion plugin
   -- use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   -- use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   -- use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  
+
   -- comment 
   use {'numToStr/Comment.nvim', config = function()
     require('Comment').setup()
@@ -36,9 +49,17 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
 
   -- coq auto complete 
-  use 'ms-jpq/coq_nvim'
-  use 'ms-jpq/coq.artifacts'
-  use 'ms-jpq/coq.thirdparty'
+  use {
+      'ms-jpq/coq_nvim',
+      event = "InsertEnter",
+      requires = {
+        'ms-jpq/coq.artifacts',
+        'ms-jpq/coq.thirdparty',
+      },
+      config = function() require('lsp_coq_config') end
+  }
+  -- use 'ms-jpq/coq.artifacts'
+  -- use 'ms-jpq/coq.thirdparty'
 
   -- tex 
   use 'lervag/vimtex'
@@ -65,11 +86,7 @@ return require('packer').startup(function(use)
   -- the auto pair
   use {
 	"windwp/nvim-autopairs",
-    wants = "nvim-treesitter",
-    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
-    config = function()
-        require("auto_pairs").setup()
-    end,
+    config = function() require("auto_pairs") end
     -- config = function() require("nvim-autopairs").setup {} end
   }
 
