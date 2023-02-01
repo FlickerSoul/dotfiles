@@ -45,7 +45,7 @@ call plug#begin()
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Plug 'preservim/nerdcommenter'
 " Plug 'mhinz/vim-startify'
 " Plug 'joshdick/onedark.vim'
@@ -53,6 +53,7 @@ Plug 'arzg/vim-colors-xcode'
 Plug 'ellisonleao/glow.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'mlr-msft/vim-loves-dafny', {'for': 'dafny'}
+Plug 'easymotion/vim-easymotion'
 " Plug 'Chiel92/vim-autoformat'
 
 " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
