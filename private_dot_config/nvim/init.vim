@@ -82,7 +82,8 @@ lua require('plugins')
 " lua require('lsp_coc_config')
 
 " setup indent 
-lua require('indent')
+" lua require('indent')
+lua require('syntax')
 
 " setup bottom bar 
 lua require('bottom_bar')
