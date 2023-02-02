@@ -43,7 +43,12 @@ return require('packer').startup(function(use)
 
   -- indent 
   use "lukas-reineke/indent-blankline.nvim"
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
