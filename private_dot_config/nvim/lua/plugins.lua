@@ -60,7 +60,6 @@ return require('packer').startup(function(use)
   -- coq auto complete 
   use {
       'ms-jpq/coq_nvim',
-      event = "InsertEnter",
       requires = {
         'ms-jpq/coq.artifacts',
         'ms-jpq/coq.thirdparty',
@@ -135,7 +134,23 @@ return require('packer').startup(function(use)
       {'nvim-lua/plenary.nvim'},
     }
   }
+
+  -- show error messages 
+  -- use {
+  -- "folke/trouble.nvim",
+  -- requires = "nvim-tree/nvim-web-devicons",
+  -- config = function()
+  --   require("trouble").setup {
+  --     -- your configuration comes here
+  --     -- or leave it empty to use the default settings
+  --     -- refer to the configuration section below
+  --   }
+  --   end
+  -- }
   
+  -- format on save 
+  use "lukas-reineke/lsp-format.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

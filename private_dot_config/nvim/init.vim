@@ -65,9 +65,6 @@ call plug#end()
 set termguicolors
 colorscheme xcodedarkhc
 
-" for vimtex 
-" let g:vimtex_view_general_viewer = 'okular'
-" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 filetype plugin indent on
 
 " for python support 
@@ -87,4 +84,10 @@ lua require('syntax')
 
 " setup bottom bar 
 lua require('bottom_bar')
+
+" latex config 
+" let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0  " hide errors 
+" set conceallevel=1
+" let g:tex_conceal='abdmg'
 
