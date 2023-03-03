@@ -1,5 +1,25 @@
+-- knap settings 
+local gknapsettings = {
+    htmltohtmlviewerlaunch = "live-server --quiet --browser=arc --open=%outputfile% --watch=%outputfile% --wait=800",
+    htmltohtmlviewerrefresh = "none",
+    mdtohtmlviewerlaunch = "live-server --quiet --browser=arc --open=%outputfile% --watch=%outputfile% --wait=800",
+    mdtohtmlviewerrefresh = "none",
+}
+vim.g.knap_settings = gknapsettings
+
+
 -- set shorter name for keymap function
 local kmap = vim.keymap.set
+
+PK = require("knap")
+
+vim.api.nvim_create_user_command(
+    'Presso',
+    function ()
+        PK.process_once()
+    end,
+    {bang=true}
+)
 
 -- F5 processes the document once, and refreshes the view
 kmap({ 'n', 'v', 'i' },'<F5>', function() require("knap").process_once() end)

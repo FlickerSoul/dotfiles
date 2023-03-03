@@ -147,9 +147,12 @@ return require('packer').startup(function(use)
   --   }
   --   end
   -- }
-  
+
   -- format on save 
   use "lukas-reineke/lsp-format.nvim"
+
+  -- knap preview markdown and latex
+  use "frabjous/knap"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

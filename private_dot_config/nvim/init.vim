@@ -67,10 +67,12 @@ filetype plugin indent on
 " for python support 
 let g:python3_host_prog="/Users/flicker_soul/.pyenv/shims/python3"
 
-lua require('knap')
-
 " load packer (which is useless)
 lua require('plugins')
+
+" preview markdown 
+lua require('knap_setup')
+autocmd BufUnload * lua if (vim.b.knap_viewerpid) then os.execute("pkill -f live-server") end
 
 " setup indent 
 lua require('syntax')
