@@ -55,9 +55,6 @@ Plug 'ThePrimeagen/vim-be-good'
 Plug 'mlr-msft/vim-loves-dafny', {'for': 'dafny'}
 Plug 'easymotion/vim-easymotion'
 " Plug 'Chiel92/vim-autoformat'
-
-" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " dark scheme 
@@ -70,16 +67,12 @@ filetype plugin indent on
 " for python support 
 let g:python3_host_prog="/Users/flicker_soul/.pyenv/shims/python3"
 
+lua require('knap')
+
 " load packer (which is useless)
 lua require('plugins')
 
-" setup lsp server 
-" lua require('lsp_cmp_config')
-" lua require('lsp_coq_config')
-" lua require('lsp_coc_config')
-
 " setup indent 
-" lua require('indent')
 lua require('syntax')
 
 " setup bottom bar 

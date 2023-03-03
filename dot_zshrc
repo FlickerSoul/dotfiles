@@ -1,4 +1,7 @@
 export GPG_TTY=$(tty)
+
+# set language
+export LANG=en_US.UTF-8
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -133,3 +136,11 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # haskell
 export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+
+# fomu
+export PATH="$HOME/.local/bin/fomu-toolchain-macOS/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/flicker_soul/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
