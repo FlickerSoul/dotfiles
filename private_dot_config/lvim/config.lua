@@ -197,5 +197,5 @@ lvim.plugins = {
 -- })
 --
 
-require("user.auto_pairs")
+require("auto_pairs")
 
