@@ -22,6 +22,20 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- change tab with shift 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- jump 
+lvim.keys.normal_mode["<C-i>"] = "<C-o>"
+lvim.keys.normal_mode["<C-o>"] = "<C-i>"
+
+lvim.lsp.buffer_mappings.normal_mode["gr"] = {  "<cmd>Telescope lsp_references<cr>", "Go to References" }
+lvim.lsp.buffer_mappings.normal_mode["gd"] = {  "<cmd>Telescope lsp_definitions<cr>", "Go to Definition" }
+
+lvim.keys.normal_mode["fr"] = "<cmd>Lspsaga rename<CR>"
+lvim.keys.normal_mode["K"] = "<cmd>Lspsaga hover_doc<CR>"
+
+lvim.keys.normal_mode["<Leader>ci"] = "<cmd>Telescope lsp_incoming_calls<CR>"
+lvim.keys.normal_mode["<Leader>co"] = "<cmd>Telescope lsp_outgoing_calls<CR>"
+
+
 -- error next 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -67,6 +81,10 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
+lvim.builtin.which_key.mappings["-"] = { "<cmd>sp<cr>", "Split Panel" }
+lvim.builtin.which_key.mappings["|"] = { "<cmd>vsp<cr>", "Split Panel Vertically" }
+lvim.builtin.which_key.mappings["i"] = { "<cmd>ToggleTerm<cr>", "Open Terminal" }
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -90,10 +108,13 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "vue",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.autotag.enable = true
+lvim.builtin.treesitter.indent = true
 
 -- generic LSP settings
 
@@ -142,13 +163,18 @@ formatters.setup {
   { command = "black", filetypes = { "python" } },
 --   { command = "isort", filetypes = { "python" } },
   {
+    filetypes={ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+    command="eslint",
+    extra_args={ "--fix-dry-run", "--format", "json", "--stdin", "--stdin-filename", "$FILENAME" }
+  },
+  {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--print-with=100", "--line-width=80" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact" },
+    filetypes = { "typescript", "typescriptreact", "vue" },
   },
 }
 
@@ -176,11 +202,50 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  { "github/copilot.vim" },
+  {
+  "ray-x/lsp_signature.nvim",
+  },
+  {
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+          require("lspsaga").setup({})
+      end,
+      requires = {
+          {"nvim-tree/nvim-web-devicons"},
+          --Please make sure you install markdown and markdown_inline parser
+          {"nvim-treesitter/nvim-treesitter"}
+      }
+  },
+  -- { "github/copilot.vim" },
+  { "zbirenbaum/copilot.lua" },
+  {
+    "zbirenbaum/copilot-cmp",
+    event = "InsertEnter",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+      require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+    end
+  },
   { "Iron-E/nvim-typora" },
   { "lervag/vimtex" },
-  { "tpope/vim-surround" }
+  { "tpope/vim-surround" },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup {
+        autotag = {
+          enable = true,
+        }
+      }
+    end
+  }
 }
+
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
@@ -197,5 +262,25 @@ lvim.plugins = {
 -- })
 --
 
+-- custom setup of auto pairs 
 require("auto_pairs")
+
+
+-- require("lvim.lsp.manager").setup("volar", {
+--   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+-- })
+
+local lsp = require("lspconfig")
+
+-- unmap all preset buffer keymaps, use lspsaga instead
+-- lvim.lsp.buffer_mappings.normal_mode = {}
+lsp.volar.setup {
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+}
+lsp.eslint.setup {
+  codeActionOnSave = {
+    enable = false,
+    mode = "all"
+  },
+}
 
