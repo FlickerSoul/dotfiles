@@ -33,7 +33,47 @@ noremap <silent> j gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
 
-Plug 'easymotion/vim-easymotion'
-Plug 'machakann/vim-highlightedyank'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+set 'easymotion/vim-easymotion'
+set 'machakann/vim-highlightedyank'
+set 'tpope/vim-commentary'
+set 'tpope/vim-surround'
+
+let mapleader = " "
+
+map [e <Actioin>(GotoPreviousError)
+map ]e <Action> (GotoNextError)
+
+map fr <Action>(RenameElement)
+map gr <Action>(GotoDeclaration)
+map gu <Action>(FindUsages)
+map gI <Action>(GotoImplementation)
+map gc <Action>(CollapseRegion)
+map ge <Action>(ExpandRegion)
+map gp <Action>(ParameterInfo)
+
+map <C-i> <Action>(Back)
+map <C-o> <Action>(Forward)
+
+map <leader>i <Action>(ActivateTerminalToolWindow)
+map <leader>sa <Action>(SearchEverywhere)
+map <leader>st <Action>(FindInPath)
+map <leader>sf <Action>(GotoFile)
+map <leader>sc <Action>(GotoClass)
+
+map <leader>gd <Action>(Compare.SameVersion)
+map <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>gu <Action>(Vcs.RollbackChangedLines)
+
+map <leader>- <Action>(SplitHorizontally)
+map <leader>_ <Action>(SplitVertically)
+
+map <S-h> <Action>(PreviousTab)
+map <S-l> <Action>(NextTab)
+
+map <C-h> <Action>(PrevSplitter)
+map <C-l> <Action>(NextSplitter)
+
+map <M-j> <Action>(MoveLineDown)
+map <M-k> <Action>(MoveLineUp)
+
+map <leader>db <Action>(ToggleLineBreakpoint)
