@@ -230,16 +230,30 @@ lvim.plugins = {
     }
   },
   -- { "github/copilot.vim" },
-  { "zbirenbaum/copilot.lua" },
+  {
+    "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      require("copilot").setup {
+        panel = {
+          auto_refresh = true,
+        },
+        suggestion = {
+          auto_trigger = true,
+        },
+        filetypes = {
+          yaml = true,
+          markdown = true,
+          gitcommit = true,
+        },
+        plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+      }
+    end,
+  },
+
   {
     "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot").setup()     -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-      require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-    end
+    after = { "copilot.lua", "nvim-cmp" },
   },
   { "Iron-E/nvim-typora" },
   { "lervag/vimtex" },
@@ -256,6 +270,7 @@ lvim.plugins = {
   },
 }
 
+-- copilot setup
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
