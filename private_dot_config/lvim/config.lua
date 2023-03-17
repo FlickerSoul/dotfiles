@@ -260,19 +260,32 @@ lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
---
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.tex" },
+  -- enable wrap mode for json files only
+  callback = function()
+    vim.cmd [[setlocal wrap]]
+
+    vim.cmd [[nnoremap <buffer> j gj]]
+    vim.cmd [[nnoremap <buffer> k gk]]
+    vim.cmd [[nnoremap <buffer> 0 g0]]
+    vim.cmd [[nnoremap <buffer> $ g$]]
+
+    vim.cmd [[nnoremap <buffer> gj j]]
+    vim.cmd [[nnoremap <buffer> gk k]]
+    vim.cmd [[nnoremap <buffer> g0 0]]
+    vim.cmd [[nnoremap <buffer> g$ $]]
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "zsh",
+  callback = function()
+    -- let treesitter use bash highlight for zsh files as well
+    require("nvim-treesitter.highlight").attach(0, "bash")
+  end,
+})
+
 
 -- custom setup of auto pairs
 require("auto_pairs")
