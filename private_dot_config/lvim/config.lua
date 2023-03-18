@@ -191,22 +191,22 @@ formatters.setup {
 }
 
 -- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { command = "flake8", filetypes = { "python" } },
---   {
---     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--severity", "warning" },
---   },
---   {
---     command = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
---   },
--- }
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  --   { command = "flake8", filetypes = { "python" } },
+  --   {
+  --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "shellcheck",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--severity", "warning" },
+  --   },
+  {
+    command = "codespell",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "python", "vue", "markdown", "tex" },
+  },
+}
 
 -- Additional Plugins
 lvim.plugins = {
@@ -292,6 +292,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd [[nnoremap <buffer> g$ $]]
   end
 })
+
+vim.g.vimtex_quickfix_open_on_warning = 0
+vim.g.vimtex_view_method = "sioyek"
+
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "zsh",
