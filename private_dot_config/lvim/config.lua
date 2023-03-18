@@ -32,8 +32,9 @@ lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Telescope lsp_definitions<c
 lvim.keys.normal_mode["fr"] = "<cmd>Lspsaga rename<CR>"
 lvim.keys.normal_mode["K"] = "<cmd>Lspsaga hover_doc<CR>"
 
-lvim.keys.normal_mode["gi"] = "<cmd>Telescope lsp_incoming_calls<CR>"
-lvim.keys.normal_mode["go"] = "<cmd>Telescope lsp_outgoing_calls<CR>"
+lvim.keys.normal_mode["gi"] = "<cmd>Telescope lsp_incoming_calls<cr>"
+lvim.keys.normal_mode["go"] = "<cmd>Telescope lsp_outgoing_calls<cr>"
+lvim.keys.normal_mode["gt"] = "<cmd>VimtexView<cr>"
 
 
 -- error next
