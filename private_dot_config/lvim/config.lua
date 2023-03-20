@@ -180,6 +180,11 @@ formatters.setup {
     command = "eslint",
     extra_args = { "--fix-dry-run", "--format", "json", "--stdin", "--stdin-filename", "$FILENAME" }
   },
+  {
+    command = "latexindent",
+    filetypes = { "tex" },
+    args = { "-" }
+  }
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
@@ -256,7 +261,6 @@ lvim.plugins = {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua", "nvim-cmp" },
   },
-  { "Iron-E/nvim-typora" },
   { "lervag/vimtex" },
   { "tpope/vim-surround" },
   {
