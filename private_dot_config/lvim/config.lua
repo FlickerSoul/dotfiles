@@ -277,7 +277,7 @@ table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.tex" },
+  pattern = { "*.tex", "*.md" },
   -- enable wrap mode for json files only
   callback = function()
     vim.cmd [[setlocal wrap]]
