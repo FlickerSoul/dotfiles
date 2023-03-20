@@ -291,6 +291,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd [[nnoremap <buffer> gk k]]
     vim.cmd [[nnoremap <buffer> g0 0]]
     vim.cmd [[nnoremap <buffer> g$ $]]
+
+    vim.cmd [[vnoremap <buffer> j gj]]
+    vim.cmd [[vnoremap <buffer> k gk]]
+    vim.cmd [[vnoremap <buffer> 0 g0]]
+    vim.cmd [[vnoremap <buffer> $ g$]]
+
+    vim.cmd [[vnoremap <buffer> gj j]]
+    vim.cmd [[vnoremap <buffer> gk k]]
+    vim.cmd [[vnoremap <buffer> g0 0]]
+    vim.cmd [[vnoremap <buffer> g$ $]]
   end
 })
 
