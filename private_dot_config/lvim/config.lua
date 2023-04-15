@@ -122,6 +122,14 @@ lvim.builtin.treesitter.ensure_installed = {
   "java",
   "yaml",
   "vue",
+  "html",
+  "latex",
+  "toml",
+  "scss",
+  "make",
+  "markdown",
+  "markdown_inline",
+  "llvm"
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -218,7 +226,13 @@ linters.setup {
 lvim.plugins = {
   {
     "folke/trouble.nvim",
-    cmd = "TroubleToggle",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   },
   {
     "ray-x/lsp_signature.nvim",
@@ -273,6 +287,7 @@ lvim.plugins = {
       }
     end
   },
+  { "easymotion/vim-easymotion" }
 }
 
 -- copilot setup
