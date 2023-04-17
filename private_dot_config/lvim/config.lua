@@ -170,13 +170,22 @@ lvim.builtin.treesitter.indent = true
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
+lvim.lsp.on_attach_callback = function(client, bufnr)
+  -- local function buf_set_option(...)
+  --   vim.api.nvim_buf_set_option(bufnr, ...)
+  -- end
+  --Enable completion triggered by <c-x><c-o>
+  -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  require "lsp_signature".on_attach(signature_setup, bufnr)
+end
+
+vim.keymap.set({ 'n' }, '<Leader>K', function()
+  require('lsp_signature').toggle_float_win()
+end, { silent = true, noremap = true, desc = 'toggle signature' })
+
+vim.keymap.set({ 'n' }, '<Leader>k', function()
+  vim.lsp.buf.signature_help()
+end, { silent = true, noremap = true, desc = 'toggle signature' })
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -287,7 +296,38 @@ lvim.plugins = {
       }
     end
   },
-  { "easymotion/vim-easymotion" }
+  { "easymotion/vim-easymotion" },
+  { 'nacro90/numb.nvim' },
+  { "mrjones2014/nvim-ts-rainbow", },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({ "css", "scss", "html", "javascript", "vue", "ts", "js" }, {
+        RGB = true,      -- #RGB hex codes
+        RRGGBB = true,   -- #RRGGBB hex codes
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        rgb_fn = true,   -- CSS rgb() and rgba() functions
+        hsl_fn = true,   -- CSS hsl() and hsla() functions
+        css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      })
+    end,
+  },
+  {
+    "SmiteshP/nvim-navbuddy",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+      "numToStr/Comment.nvim",        -- Optional
+      "nvim-telescope/telescope.nvim" -- Optional
+    }
+  }
+}
+
+-- rainbow parentheses
+lvim.builtin.treesitter.rainbow = {
+  enable = true,
 }
 
 -- copilot setup
@@ -325,6 +365,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.g.vimtex_quickfix_open_on_warning = 0
 vim.g.vimtex_view_method = "sioyek"
+vim.g.vimtex_delim_toggle_mod_list = { { '\\left', '\\right' }, { '\\big', '\\big' } }
 
 
 vim.api.nvim_create_autocmd("FileType", {
