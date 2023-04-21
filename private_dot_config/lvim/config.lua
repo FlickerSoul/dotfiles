@@ -170,13 +170,15 @@ lvim.builtin.treesitter.indent = true
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
+
+
 lvim.lsp.on_attach_callback = function(client, bufnr)
   -- local function buf_set_option(...)
   --   vim.api.nvim_buf_set_option(bufnr, ...)
   -- end
   --Enable completion triggered by <c-x><c-o>
   -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-  require "lsp_signature".on_attach(signature_setup, bufnr)
+  require "lsp_signature".on_attach({}, bufnr)
 end
 
 vim.keymap.set({ 'n' }, '<Leader>K', function()
@@ -187,7 +189,10 @@ vim.keymap.set({ 'n' }, '<Leader>k', function()
   vim.lsp.buf.signature_help()
 end, { silent = true, noremap = true, desc = 'toggle signature' })
 
+
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
+local null_ls_builtins = require("null-ls").builtins
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "black", filetypes = { "python" } },
@@ -201,7 +206,10 @@ formatters.setup {
     command = "latexindent",
     filetypes = { "tex" },
     args = { "-" }
-  }
+  },
+  null_ls_builtins.formatting.swiftformat,
+  -- null_ls_builtins.diagnostics.swiftlint
+
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
@@ -322,7 +330,8 @@ lvim.plugins = {
       "numToStr/Comment.nvim",        -- Optional
       "nvim-telescope/telescope.nvim" -- Optional
     }
-  }
+  },
+  { 'keith/swift.vim' }
 }
 
 -- rainbow parentheses
@@ -399,3 +408,4 @@ lsp.tailwindcss.setup {
         lsp.util.path.dirname(fname)
   end
 }
+lsp.sourcekit.setup {}
