@@ -144,3 +144,25 @@ export PATH="$HOME/.local/bin/fomu-toolchain-macOS/bin:$PATH"
 export PNPM_HOME="/Users/flicker_soul/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# deno version manager 
+export DVM_DIR="/Users/flicker_soul/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
+# deno version manager end
+
+
+# bun completions
+[ -s "/Users/flicker_soul/.bun/_bun" ] && source "/Users/flicker_soul/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# brew completion
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi

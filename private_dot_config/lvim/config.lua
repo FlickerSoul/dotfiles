@@ -81,6 +81,8 @@ lvim.builtin.which_key.mappings["t"] = {
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
+lvim.builtin.which_key.mappings["s"].r = { "<cmd>Telescope resume<cr>", "Resume Last" }
+
 
 lvim.builtin.which_key.mappings["-"] = { "<cmd>sp<cr>", "Split Panel" }
 lvim.builtin.which_key.mappings["|"] = { "<cmd>vsp<cr>", "Split Panel Vertically" }
@@ -235,7 +237,7 @@ linters.setup {
   {
     command = "codespell",
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "python", "vue", "markdown", "tex" },
+    filetypes = { "typescript", "python", "vue", "markdown", "tex", "markdown" },
   },
 }
 
@@ -306,7 +308,7 @@ lvim.plugins = {
   },
   { "easymotion/vim-easymotion" },
   { 'nacro90/numb.nvim' },
-  { "mrjones2014/nvim-ts-rainbow", },
+  { "HiPhish/nvim-ts-rainbow2", },
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
@@ -409,3 +411,6 @@ lsp.tailwindcss.setup {
   end
 }
 lsp.sourcekit.setup {}
+
+-- setup telescope
+lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git" }
