@@ -195,10 +195,11 @@ end, { silent = true, noremap = true, desc = 'toggle signature' })
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local null_ls_builtins = require("null-ls").builtins
 
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  --   { command = "isort", filetypes = { "python" } },
+  null_ls_builtins.formatting.black,
+  null_ls_builtins.formatting.isort,
   {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
     command = "eslint",
@@ -210,7 +211,7 @@ formatters.setup {
     args = { "-" }
   },
   null_ls_builtins.formatting.swiftformat,
-  -- null_ls_builtins.diagnostics.swiftlint
+  null_ls_builtins.formatting.rustfmt,
 
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -222,6 +223,7 @@ formatters.setup {
   --   filetypes = { "typescript", "typescriptreact", "vue" },
   -- },
 }
+
 
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
@@ -333,7 +335,7 @@ lvim.plugins = {
       "nvim-telescope/telescope.nvim" -- Optional
     }
   },
-  { 'keith/swift.vim' }
+  { 'keith/swift.vim' },
 }
 
 -- rainbow parentheses
