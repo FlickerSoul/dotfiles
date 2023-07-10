@@ -264,7 +264,7 @@ lvim.plugins = {
     config = function()
       require("lspsaga").setup({})
     end,
-    requires = {
+    dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       --Please make sure you install markdown and markdown_inline parser
       { "nvim-treesitter/nvim-treesitter" }
@@ -327,7 +327,7 @@ lvim.plugins = {
   },
   {
     "SmiteshP/nvim-navbuddy",
-    requires = {
+    dependencies = {
       "neovim/nvim-lspconfig",
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim",
