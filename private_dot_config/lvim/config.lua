@@ -414,5 +414,17 @@ lsp.tailwindcss.setup {
 }
 lsp.sourcekit.setup {}
 
+lsp.pyright.setup {}
+
+lsp.rust_analyzer.setup {}
+
+lsp.wgsl_analyzer.setup {
+  filetypes = { "wgsl", ".wgsl" },
+  root_dir = lsp.util.root_pattern(".git", "wgsl"),
+  settings = {}
+}
+
+lsp.lua_ls.setup {}
+
 -- setup telescope
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git" }
