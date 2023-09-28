@@ -30,7 +30,13 @@ lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Telescope lsp_references<cr
 lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Go to Definition" }
 
 lvim.keys.normal_mode["fr"] = "<cmd>Lspsaga rename<CR>"
-lvim.keys.normal_mode["K"] = "<cmd>Lspsaga hover_doc<CR>"
+lvim.keys.normal_mode["K"] = function()
+  local winid = require('ufo').peekFoldedLinesUnderCursor()
+  if not winid then
+    -- choose one of coc.nvim and nvim lsp
+    require("lspsaga.command").load_command("hover_doc")
+  end
+end
 
 lvim.keys.normal_mode["gi"] = "<cmd>Telescope lsp_incoming_calls<cr>"
 lvim.keys.normal_mode["go"] = "<cmd>Telescope lsp_outgoing_calls<cr>"
