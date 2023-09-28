@@ -180,7 +180,7 @@ lvim.lsp.on_attach_callback = function(client, bufnr)
   -- end
   --Enable completion triggered by <c-x><c-o>
   -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-  require "lsp_signature".on_attach({}, bufnr)
+  require "lsp_signature".on_attach(client, bufnr)
 end
 
 vim.keymap.set({ 'n' }, '<Leader>K', function()
@@ -333,7 +333,20 @@ lvim.plugins = {
       "MunifTanjim/nui.nvim",
       "numToStr/Comment.nvim",        -- Optional
       "nvim-telescope/telescope.nvim" -- Optional
-    }
+    },
+    keys = {
+      { "<leader>S", "<cmd>lua require(\"nvim-navbuddy\").open()<cr>", desc = "Nav" },
+    },
+    config = function()
+      local actions = require("nvim-navbuddy.actions")
+      local navbuddy = require("nvim-navbuddy")
+      navbuddy.setup({
+        window = {
+          border = "double"
+        },
+        lsp = { auto_attach = true }
+      })
+    end
   },
   { 'keith/swift.vim' },
 }
@@ -428,3 +441,7 @@ lsp.lua_ls.setup {}
 
 -- setup telescope
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git" }
+
+-- fold with treesitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treeesitter.foldexpr()"
