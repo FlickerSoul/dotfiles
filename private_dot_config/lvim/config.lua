@@ -453,6 +453,10 @@ lsp.wgsl_analyzer.setup {
 
 lsp.lua_ls.setup {}
 
+lsp.glslls.setup {}
+
+lsp.jdtls.setup {}
+
 -- setup telescope
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git" }
 
@@ -471,8 +475,8 @@ require('ufo').setup({
 })
 
 -- fold with treesitter
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- local vim = vim
 -- local api = vim.api
