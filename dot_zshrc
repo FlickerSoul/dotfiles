@@ -166,3 +166,6 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+# swiftenv 
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
