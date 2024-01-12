@@ -362,6 +362,11 @@ lvim.plugins = {
   {
     "anuvyklack/fold-preview.nvim",
     dependencies = { "anuvyklack/keymap-amend.nvim" }
+  },
+  {
+    'kaarmu/typst.vim',
+    ft = 'typst',
+    lazy = false,
   }
 }
 
@@ -462,7 +467,8 @@ lsp.cmake.setup {}
 lsp.typst_lsp.setup {
   settings = {
     exportPdf = "onType"
-  }
+  },
+  filetypes = { "typst", ".typ" },
 }
 
 -- setup telescope
