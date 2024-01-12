@@ -457,6 +457,14 @@ lsp.glslls.setup {}
 
 lsp.jdtls.setup {}
 
+lsp.cmake.setup {}
+
+lsp.typst_lsp.setup {
+  settings = {
+    exportPdf = "onType"
+  }
+}
+
 -- setup telescope
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "node_modules", ".git" }
 
