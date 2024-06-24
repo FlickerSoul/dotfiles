@@ -316,7 +316,7 @@ lvim.plugins = {
   },
   { "easymotion/vim-easymotion" },
   { 'nacro90/numb.nvim' },
-  { "HiPhish/nvim-ts-rainbow2", },
+  { 'HiPhish/rainbow-delimiters.nvim' },
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
